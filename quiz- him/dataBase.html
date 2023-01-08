@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz_قواعد بيانات</title>
+<!-- <link rel="stylesheet" href="style1.css"> -->
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"> -->
+<link rel="stylesheet" href="font-awesome.css">
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="bootstrap.min.css">
+<style>
+
+
+body{
+    direction: rtl;
+}
+    .content {
+margin-top: 54px;
+}
+.header {
+padding: 15px;
+position: fixed;
+top: 0;
+width: 100%;
+z-index: 9999;
+}
+.left-title {
+width: 80px;
+color: #fff;
+font-size: 18px;
+float: left;
+}
+.right-title {
+width: 150px;
+text-align: right;
+float: right;
+color: #fff;
+}
+.quiz-body {
+margin-top: 15px;
+padding-bottom: 50px;
+}
+.option-block-container {
+margin-top: 20px;
+max-width: 420px;
+}
+.option-block {
+padding: 10px;
+background: aliceblue;
+border: 1px solid #84c5fe;
+margin-bottom: 10px;
+cursor: pointer;
+}
+.result-question {
+font-weight: bold;
+}
+.c-wrong {
+margin-left: 20px;
+color: #ff0000;
+}
+.c-correct {
+margin-left: 20px;
+color: green;
+}
+.last-row {
+border-bottom: 1px solid #ccc;
+padding-bottom: 25px;
+margin-bottom: 25px;
+}
+.res-header {
+border-bottom: 1px solid #ccc;
+margin-bottom: 15px;
+padding-bottom: 15px;
+}
+</style>
+</head>
+<body>
+<header class="header bg-primary">
+<div class="left-title">JS Quiz</div>
+<div class="right-title">Total Questions: <span id="tque"></span></div>
+<div class="clearfix"></div>
+</header>
+<div class="content">
+    <div>
+    </div>
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-12">
+<div id="result" class="quiz-body">
+<form name="quizForm" onSubmit="">
+<fieldset class="form-group">
+<h4><span id="qid">1.</span> <span id="question"></span></h4>
+<div class="option-block-container" id="question-options">
+</div> <!-- End of option block -->
+</fieldset>
+<button name="previous" id="previous" class="btn btn-success">Previous</button>
+&nbsp;
+<button name="next" id="next" class="btn btn-success">Next</button>
+</form>
+</div>
+</div> <!-- End of col-sm-12 -->
+</div> <!-- End of row -->
+</div> <!-- ENd of container fluid -->
+</div> <!-- End of content -->
+<script src="jquery-3.6.0.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<script src="bootstrap.min.js"></script>
+
+<script>
+/* Created and coded by Abhilash Narayan */
+/* Quiz source: w3schools.com */
+input=document.querySelector("input")
+
+
+var quiz = {
+"JS": [
+{
+"id": 1,
+"question": "ھي مجموعة مشتركة من البیانات المترابطة والمتجانسة",
+"options": [
+{
+"a": "حقل البيانات",
+"b": "قاعدة البيانات",
+"c": "المفتاح الرئسئ",
+
+}
+],
+"answer": "قاعدة البيانات",
+"score": 0,
+"status": ""
+},
+{
+"id": 2,
+"question": "التطبیقات التقلیدیة لقواعد البیانات من أمثلتھا قواعد البٌيانات النصٌية والرقمٌية",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": "بببب"
+},
+{
+"id": 3,
+"question": "تقوم قواعد بیانات الوسائط المتعددة علي تخزٌين ومعالجة بٌيانات فًي صٌيغة كالصور والصوت والفٌيدٌيو.",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 4,
+"question": "من امثلة نظم المعلومات الجغرافیة",
+"options": [
+{
+"a":"جوجل إٌيرث",
+"b":"یوتیوب",
+"c":"فوكس",
+
+}
+],
+"answer": "جوجل إٌيرث",
+"score": 0,
+"status": ""
+},
+{
+"id": 5,
+"question": "تطبٌيقات تستخدم قواعد البٌيانات التًي مضى علٌيھا فترات طوٌيلة، من أجل الحصول على معارف وخبرات",
+"options": [
+{
+"a":"فھرس البٌيانات",
+"b":"مخازن او مستودعات البٌيانات",
+"c":"سكٌيما",
+"d":"مخطط الكٌيان-العلاقات",
+
+}
+],
+"answer": "مخازن او مستودعات البٌيانات",
+"score": 0,
+"status": ""
+},
+{
+"id": 6,
+"question":"تتكون من الخبرة والمعلومات",
+"options": [
+{
+"a":"المعرفه",
+"b":"المعلومات",
+"c":"البیانات",
+"d":"الوسائط المتعددة",
+
+}
+],
+"answer": "المعرفه",
+"score": 0,
+"status": ""
+},
+{
+"id": 7,
+"question": ".قواعد البٌيانات النشطة ذات أنظمة الوقت الحقیقي تكون المعالجة ودقتھا لھا الأولوية على تخزٌين البٌيانات وحفظھا.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 8,
+"question": "نظام ادارة قواعد البٌيانات هو حلقة وصل بٌين التطبٌيق البٌيانات، وبٌين البٌيانات أٌيضا ومسئول قاعدة البٌيانات",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 9,
+"question": "المستخدمٌين و المبرمجٌين هم احد مكونات نظام قاعدة البٌيانات.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 10,
+"question": "تعریفات البیانات هًي بٌيانات مخزنة عن البٌيانات",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 11,
+"question": "قواعد البیانات المخزنة تفصل عن تعرٌيفاتھا، من أجل مرونة إجراء اي تعدٌيل او تحدٌيث للبٌيانات",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 12,
+"question": "هو جزء من الDBMSالذي يحتفظ بمعلومات عن الجدول",
+"options": [
+{
+"a":"كتلوج نظام إدارة البیانات",
+"b":"قاعدة البٌيانات نفسھا",
+"c":"التحول الرقمي",
+"d":"الكٌيان",
+
+}
+],
+"answer": "كتلوج نظام إدارة البیانات",
+"score": 0,
+"status": ""
+},
+{
+"id": 13,
+"question": "من امثلة المستخدم غیر المباشر لقواعد البیانات مدٌير قاعدة البٌيانات، ومصمم قاعدة البٌيانات",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 14,
+"question": "مدیرون قاعدة البیانات مسئولٌيتھم منح حقوق وشرعٌية الوصول إلى قاعدة البٌيانات.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 15,
+"question": "مصممو قاعدة البیانات مسئولٌيتھم تعرٌف المحتوى وكتالوج قاعدة البٌيانات",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 16,
+"question": "المستخدم المباشر ٌيستخدم هذا النوع من المستخدمٌين البٌيانات للأستعلام وإستخراج التقارٌير.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 17,
+"question": ".ممیزات استخدام طرق قواعد البیانات",
+"options": [
+{
+"a":"التحكم بتكرار البٌيانات عند تخزٌينھا",
+"b":"ضبط الوصول غٌير الشرعًي(غٌير المصرح) للبٌيانات",
+"c":"تقدٌيم بنٌية تخزٌين مفھرسة لتسرٌيع المعالجة والأستعلام",
+"d":"كل ما سبق",
+}
+],
+"answer": "كل ما سبق",
+"score": 0,
+"status": ""
+},
+{
+"id": 18,
+"question": "إذا كانت تكلفة برمجٌيات DBMSأغلى من جدوى النظام نفسه لا ینصح باستخدام نظام ادارة قواعدالبیانات.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 19,
+"question": "المخطط الرسومي لقاعدة البیانات(سكیما) هو مخطط قاعدةالبٌيانات ولكن بشكل رسومًي",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 20,
+"question": "هي البيانات المخزنة في قاعدة البيانات في لحظة معينة من الزمن",
+"options": [
+{
+"a":"المخطط الرسومي لقاعدة البیانات",
+"b":"مثيل قاعدة البيانات",
+"c":"الوسائط المتعدده",
+"d":"البرمجه الكائنیه",
+
+}
+],
+"answer": "مثيل قاعدة البيانات",
+"score": 0,
+"status": ""
+},
+{
+"id": 21,
+"question": "نموذج الكينونه العلاقه ھو نموذج عالي المستوي يقوم بعرض بناء البيانات وينتج عن ذلك النموذج ألأولي لقاعدة البيانات",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 22,
+"question": "في نموذج الكينونه العلاقه يتم تمثيل بناء البيانات والقيودالمطلوبة عليھا باستخدام أشكال رسومية محددة.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 23,
+"question": "صفات الكيان يمكن أن تكون بسيطة أو مركبة.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 24,
+"question": ".صفات الكيان يمكن أن تكون أحادية القيمة أو متعددة القيم.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 25,
+"question": ".يمثل الكيان بمستطيل في مخطط الكيان-العلاقه.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 26,
+"question": "العلاقات ھي مجموعة تمثل الأرتباطات بين الكيانات.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 27,
+"question": "أنواع العلاقات في مخطط الكيان العلاقه .........",
+"options": [
+{
+"a":"واحد الي واحد",
+"b":"واحد الي متعدد",
+"c":"متعدد الي متعدد",
+"d":"كل ما سبق",
+
+}
+],
+"answer": "كل ما سبق",
+"score": 0,
+"status": ""
+},
+{
+"id": 28,
+"question": "تكون العلاقة اشتراك كلي ، إذا كان كل وحدة في الكيان الأول يجب أن ترتبط بوحده من الكيان آلاخر ضمن العلاقة.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 29,
+"question": "تكون العلاقة اشتراك جزئي، إذا كانت بعض الوحدات في الكيان المشترك بالعلاقة ترتبط ببعض الوحدات في الكيان آلأخر ضمن العلاقة.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 30,
+"question": "يمثل الكيان الضعيف بمستطيل مزدوج.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 31,
+"question": "المفتاح الرئيسي ھو حقل في جدول يتميز بأن قيمه وحيدة في جميع صفوف الجدول.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 32,
+"question": "المفتاح الرئيسي ھو حقل موجود في جدول وھو لا يمثل واحدة من صفاته.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "خطا",
+"score": 0,
+"status": ""
+},
+{
+"id": 33,
+"question": "لتحويل الكيانات الضعيفة، نقوم بإنشاء جدول يتكون من الحقول التي تقابل صفات ذلك الكيان فقط.",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer": "خطا",
+"score": 0,
+"status": ""
+},
+{
+"id": 34,
+"question": "اذا كانت العلاقه بين المورد و المشروع ھي متعدد الي متعدد فيكون ناتج العلاقه عدد......",
+"options": [
+{
+"a":"واحد جدول",
+"b":"جدولان",
+"c":"ثلاث جداول",
+"d":"اربع جداول",
+}
+],
+"answer": "ثلاث جداول",
+"score": 0,
+"status": ""
+},
+{
+"id": 35,
+"question": "مجموعة من الحقائق الخام التي تمثل مدخلات النظام",
+"options": [
+{
+"a":"المعلومات",
+"b":"البيانات",
+"c":"المعرفة",
+"d":"لاشئ مماسبق",
+}
+],
+"answer": "البيانات",
+"score": 0,
+"status": ""
+},
+{
+"id": 36,
+"question": "مجموعة من البٌيانات التًي تمت معالجتھا وتنظٌيمھا وتنسٌيقھا.ذات معنى وفائدة",
+"options": [
+{
+"a":"المعلومات",
+"b":"البيانات",
+"c":"المعرفة",
+"d":"لاشئ مماسبق",
+}
+],
+"answer": "المعلومات",
+"score": 0,
+"status": ""
+},
+{
+"id": 37,
+"question": "ھو النظام الذي يسھل إنشاء وصيانة قواعد البيانات المحوسبة،ويأتي عادة على شكل حزمة برمجية",
+"options": [
+{
+"a":"Mac",
+"b":"linux",
+"c":"DBMS",
+"d":"SDMP",
+}
+],
+"answer": "DBMS",
+"score": 0,
+"status": ""
+},
+{
+"id": 38,
+"question": " يعد برنامج Access Microsoft أحد البرامج المشهورة من حزمة Microsoft",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer":"صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 39,
+"question": "يمتلك برنامج الـ (Access)واجهة سهلة الأسخدام بالأضافة إلى أنّه يدعم التعامل مع برمجيات أخرى من شركة (Microsoft) مثل (Server SQL Microsoft)",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer":"صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 40,
+"question": "يحتوي علي العديد من الكائنات التي يمكن أستخدامها لعرض المعلومات وأدارتها مثل :الجداول,النماذج,التقارير.",
+"options": [
+{
+"a":"Word",
+"b":"Access",
+"c":"Office",
+}
+],
+"answer":"Access",
+"score": 0,
+"status": ""
+},
+{
+"id": 41,
+"question": "يقصد بها قواعد البيانات التي تكون الجداول فيها مترايطة مع بعضها في حقل واحد أو اكثر",
+"options": [
+{
+"a":"قواعد البيانات الفردية",
+"b":"قواعد البيانت الزوجية ",
+"c":"قواعد البيانات العلائقية"
+}
+],
+"answer":"قواعد البيانات العلائقية",
+"score": 0,
+"status": ""
+},
+{
+"id": 42,
+"question": "ُيعتبر الهدف الأساسي من ربط الجداول مع بعضها البعض هو منع تكرار البيانات، الحد من مساحات التخزين الضائعة والرفع من كفاءة قاعدة البيانات",
+"options": [
+{
+"a":"صح",
+"b":"خطا",
+
+}
+],
+"answer":"صح",
+"score": 0,
+"status": ""
+},
+{
+"id": 43,
+"question": "من مميزات برنامج  Access Microsoft",
+"options": [
+{
+"a":"يسمح للمستخدمين حتّى إن كانوا مبتدئين بإنشاء قواعد بيانات خاصة بهم.",
+"b":"يساعد على إنشاء تطبيقات الأدارة ألأعمال بجودة عالية",
+"c":"يسمح للمستخدمين بتخزين بياناتهم في السحابة الألكترونيّة",
+"d":" يحتوي علي العديد من القوالب الجاهزة",
+"d":"كل ماسبق",
+}
+],
+"answer":"كل ماسبق",
+"score": 0,
+"status": ""
+},
+{
+"id": 44,
+"question": "من الوظائف الأساسية لبرنامج Access Microsoft",
+"options": [
+{
+"a":"حفظ وتخزين المعلومات",
+"b":"البحث عن المعلومات بسهولة",
+"c":"تحليل وطباعة المعلومات",
+"d":"كل ماسبق",
+}
+],
+"answer":"كل ماسبق",
+"score": 0,
+"status": ""
+},
+{
+"id": 45,
+"question": "هو تطبيق الأدارة قواعد البيانات وتنظيمها وعمل التقارير، يُمكّن عدّة مستخدمين من العمل معًا بنفس الوقت في قاعدة بيانات(Access)",
+"options": [
+{
+"a":"Word",
+"b":"Access",
+"c":"Office",
+}
+],
+"answer":"Access",
+"score": 0,
+"status": ""
+},
+]
+}
+
+var quizApp = function () {
+this.score = 0;
+this.qno = 1;
+this.currentque = 0;
+var totalque = quiz.JS.length;
+this.displayQuiz = function (cque) {
+this.currentque = cque;
+if (this.currentque < totalque) {
+$("#tque").html(totalque);
+$("#previous").attr("disabled", false);
+$("#next").attr("disabled", false);
+$("#qid").html(quiz.JS[this.currentque].id + '.');
+$("#question").html(quiz.JS[this.currentque].question);
+$("#question-options").html("");
+for (var key in quiz.JS[this.currentque].options[0]) {
+if (quiz.JS[this.currentque].options[0].hasOwnProperty(key)) {
+$("#question-options").append(
+"<div class='form-check option-block'>" +
+    "<label style='direction:ltr;'  class='form-check-label'>" +
+"<input  type='radio' class='form-check-input' name='option' id='q" + key + "' value='" + quiz.JS[this.currentque].options[0][key] + "'><span id='optionval'>" +
+quiz.JS[this.currentque].options[0][key] +
+"</span></label>"
+);
+}
+}
+}
+if (this.currentque <= 0) {
+$("#previous").attr("disabled", true);
+}
+if (this.currentque >= totalque) {
+$('#next').attr('disabled', true);
+for (var i = 0; i < totalque; i++) {
+this.score = this.score + quiz.JS[i].score;
+}
+return this.showResult(this.score);
+}
+}
+this.showResult = function (scr) {
+$("#result").addClass('result');
+$("#result").html("<h1 class='res-header'>Total Score: &nbsp;" + scr + '/' + totalque + "</h1>");
+for (var j = 0; j < totalque; j++) {
+var res;
+if (quiz.JS[j].score == 0) {
+res = '<span class="wrong">' + quiz.JS[j].score + '</span><i class="fa fa-remove c-wrong"></i>';
+} else {
+res = '<span class="correct">' + quiz.JS[j].score + '</span><i class="fa fa-check c-correct"></i>';
+}
+$("#result").append(
+'<div class="result-question"><span>Q ' + quiz.JS[j].id + '</span> &nbsp;' + quiz.JS[j].question + '</div>' +
+'<div><b>Correct answer:</b> &nbsp;' + quiz.JS[j].answer + '</div>' +
+'<div class="last-row"><b>Score:</b> &nbsp;' + res +
+'</div>'
+);
+}
+}
+this.checkAnswer = function (option) {
+var answer = quiz.JS[this.currentque].answer;
+option = option.replace(/</g, "&lt;") //for <
+option = option.replace(/>/g, "&gt;") //for >
+option = option.replace(/"/g, "&quot;")
+if (option == quiz.JS[this.currentque].answer) {
+if (quiz.JS[this.currentque].score == "") {
+quiz.JS[this.currentque].score = 1;
+quiz.JS[this.currentque].status = "correct";
+}
+} else {
+quiz.JS[this.currentque].status = "wrong";
+}
+}
+this.changeQuestion = function (cque) {
+this.currentque = this.currentque + cque;
+this.displayQuiz(this.currentque);
+}
+}
+var jsq = new quizApp();
+var selectedopt;
+$(document).ready(function () {
+jsq.displayQuiz(0);
+$('#question-options').on('change', 'input[type=radio][name=option]', function (e) {
+//var radio = $(this).find('input:radio');
+$(this).prop("checked", true);
+selectedopt = $(this).val();
+});
+});
+$('#next').click(function (e) {
+e.preventDefault();
+if (selectedopt) {
+jsq.checkAnswer(selectedopt);
+}
+jsq.changeQuestion(1);
+});
+$('#previous').click(function (e) {
+e.preventDefault();
+if (selectedopt) {
+jsq.checkAnswer(selectedopt);
+}
+jsq.changeQuestion(-1);
+});
+</script>
+</body>
+</html>

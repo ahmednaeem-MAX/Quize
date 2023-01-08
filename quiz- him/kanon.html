@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz_مبادئ قانون</title>
+<!-- <link rel="stylesheet" href="style1.css"> -->
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"> -->
+<link rel="stylesheet" href="font-awesome.css">
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="bootstrap.min.css">
+<style>
+
+
+    .content {
+margin-top: 54px;
+margin-right:200px;
+}
+.header {
+padding: 15px;
+position: fixed;
+top: 0;
+width: 100%;
+z-index: 9999;
+}
+.left-title {
+width: 80px;
+color: #fff;
+font-size: 18px;
+float: left;
+}
+.right-title {
+width: 150px;
+text-align: right;
+float: right;
+color: #fff;
+}
+.quiz-body {
+margin-top: 15px;
+padding-bottom: 50px;
+direction: rtl;
+}
+.option-block-container {
+margin-top: 20px;
+max-width: 900px;
+text-align: center;
+margin-right: -150px;
+}
+.option-block {
+padding: 10px;
+background: aliceblue;
+border: 1px solid #84c5fe;
+margin-bottom: 10px;
+cursor: pointer;
+font-size:20px;
+height: 70px;
+top: 10px;
+border-radius: 20px;
+}
+.result-question {
+font-weight: bold;
+}
+.c-wrong {
+margin-left: 20px;
+color: #ff0000;
+}
+.c-correct {
+margin-left: 20px;
+color: green;
+}
+.last-row {
+border-bottom: 1px solid #ccc;
+padding-bottom: 25px;
+margin-bottom: 25px;
+}
+.res-header {
+border-bottom: 1px solid #ccc;
+margin-bottom: 15px;
+padding-bottom: 15px;
+}
+
+.mt-2 {
+    margin-top: 0.6rem!important;
+}
+
+#next{
+width: 435px;
+height: 40px;
+border-radius: 10px;
+margin-right: 13px;
+}
+
+#previous{
+width: 435px;
+height: 40px;
+border-radius: 10px;
+margin-right: -147px;
+}
+
+h4{
+font-size: 2rem;
+margin-left: 30px;
+}
+
+
+
+@media screen and (max-width: 667px) {	
+#next{
+width: 125px;
+height: 40px;
+border-radius: 10px;
+margin-right: 13px;
+margin-top:0px;
+}
+
+#previous{
+width: 125px;
+height: 40px;
+border-radius: 10px;
+margin-right: -147px;
+
+}
+h4{
+width: 340px;
+font-size: 2rem;
+margin-right:-209px;
+}
+
+}
+</style>
+</head>
+<body>
+<header class="header bg-primary">
+<div class="left-title">JS Quiz</div>
+<div class="right-title">Total Questions: <span id="tque"></span></div>
+<div class="clearfix"></div>
+</header>
+<div class="content">
+    <div>
+    </div>
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-12">
+<div id="result" class="quiz-body">
+<form name="quizForm" onSubmit="">
+<fieldset class="form-group">
+<h4 ><span id="qid">1.</span> <span id="question"></span></h4>
+<div class="option-block-container" id="question-options">
+</div> <!-- End of option block -->
+</fieldset>
+<button name="previous" id="previous" class="btn btn-success">Previous</button>
+&nbsp;
+<button name="next" id="next" class="btn btn-success">Next</button>
+</form>
+</div>
+</div> <!-- End of col-sm-12 -->
+</div> <!-- End of row -->
+</div> <!-- ENd of container fluid -->
+</div> <!-- End of content -->
+<script src="jquery-3.6.0.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<script src="bootstrap.min.js"></script>
+
+<script>
+
+var quiz = {
+"JS": [
+{
+"id":1,
+"question": "قدرة او سلطة أرادية لصاحب الحق يستمدها من القانون في نطاق معين.",
+"options": [
+{
+"a": "الحق(النظرية الارادية)",
+"b": "الحق(النظرية المصلحة)",
+"C":"كل ماسبق",
+}
+],
+"answer": "الحق(النظرية الارادية)",
+"score": 0,
+"status": ""
+},
+{
+"id":2,
+"question": "الارادة ليست شرطا لزما لتمتع الانسان باالحق.",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":3,
+"question":"قد يثبت لشخص بعض الحقوق دون ارادته,وأحيانا دون علمه مثل حقوق الأرث.",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":4,
+"question": "يخلط انصار نظرية المصلحة بين وجود الحق وأستعماله",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "خطأ",
+"score": 0,
+"status":""
+},
+{
+"id":5,
+"question": "وجود الحق يتطلب وجود ارادة",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "خطأ",
+"score": 0,
+"status": "لا"
+},
+{
+"id":6,
+"question": "يحرم الاشخاص الاعتبارية من اكتساب الحقوق لأنعدام الارادة الحقيقية.",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":7,
+"question": "مصلحة يحميها القانون ويعتبر انصار هذه النظرية ان المصلحة هي اساس الحق.",
+"options": [
+{
+"a": "الحق(النظرية الادارية)",
+"b": "الحق(النظرية المصلحة)",
+"c": "الحق(النظرية الحديثة)",
+}
+],
+"answer":"الحق(النظرية المصلحة)",
+"score": 0,
+"status": ""
+},
+{
+"id":8,
+"question": "يحرم الاشخاص الاعتبارية من اكتساب الحقوق لأنعدام الارادة الحقيقية.",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":9,
+"question":"ليس من المنطقي تعريف الحق بالغاية او المصلحة من الانتقادات التي وجهت الي (نظرية المصلحة)",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":10,
+"question":"الحق هو وسيلة لتحقيق المصالح بأعتبارها نتيجة مترابطة عنها من الانتقادات التي وجهت الي(نظرية المصلحة)",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":11,
+"question":"الحماية القانونية ليست ركنا في الحق كما يري انصار نظرية المصلحة بل هي وسيلة لاحقه لوجود الحق ونتيجة له",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":12,
+"question": "سلطة أرادية يعترف بها القانون ويحميها",
+"options": [
+{
+"a": "الحق(النظرية الادارية)",
+"b": "الحق(النظرية المصلحة)",
+"c": "الحق(النظرية المختلطة)",
+}
+],
+"answer": "الحق(النظرية المختلطة)",
+"score": 0,
+"status": ""
+},
+{
+"id":13,
+"question": "ميزة يمنحها القانون لشخص ما ويحميها له بوسائل قانونية.",
+"options": [
+{
+"a": "الحق(النظرية الادارية)",
+"b": "الحق(النظرية الحديثة)",
+"c": "الحق(النظرية المختلطة)",
+}
+],
+"answer": "الحق(النظرية الحديثة)",
+"score": 0,
+"status": ""
+},
+{
+"id":14,
+"question": "ابرز العناصر المميزة للحق من وجهة (نظرية الحديثة)",
+"options": [
+{
+"a": "الأستئثار والأختصاص",
+"b": "التسلط",
+"c": "احترام الغير للحق",
+"d": "الحماية القانونية",
+"e": "كل ماسبق",
+}
+],
+"answer": "كل ماسبق",
+"score": 0,
+"status": ""
+},
+{
+"id":15,
+"question":"الاستئثار يعني انفراد صاحب الحق دون غيره بالمميزات التي يخولها له الحق",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":16,
+"question":"التسلط هو القدرة علي التصرف بحرية في المال او القيمة محل الاستئثار سواء تم ذالك بعوض او بدون عوض",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":17,
+"question":"احترام الغير للحق يعني اعتراف القانون بالحق وأقراره بأستئثار صاحبه بمميزاته وهو الوسيلة التي تكفل احترام الحق",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "خطأ",
+"score": 0,
+"status": "الحماية القانونية"
+},
+{
+"id":18,
+"question":"الحماية القانونية تعني احترام الغير للحق.",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "خطأ",
+"score": 0,
+"status": "احترام الغير للحق"
+},
+{
+"id":19,
+"question":"  لاستئثار بقيمة ثابتة بالشرع او القانون لله تعالي او لشخص او لهما معا علي الغير مع حمايته عن طريق التسلط او الاقتضاء هو تعريف الراجح للحق",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":20,
+"question":"أذكر أنواع الحقوق",
+"options": [
+{
+"a": "الحقوق السياسية",
+"b": "الحقوق اللصيقة ياالشخخصية",
+"c": "حقوق الاسرة",
+"d": "حقوق المالية",
+"e": "كل ماسبق",
+}
+],
+"answer": "كل ماسبق",
+"score": 0,
+"status": ""
+},
+{
+"id":21,
+"question":"هي الحقوق التي تتقرر للشخص بأعتباره جماعة سياسية معينة",
+"options": [
+{
+"a": "الحقوق السياسية",
+"b": "الحقوق اللصيقة ياالشخخصية",
+"c": "حقوق الاسرة",
+}
+],
+"answer": "الحقوق السياسية",
+"score": 0,
+"status": ""
+},
+{
+"id":22,
+"question":"من خصائص الحقوق السياسية أنها حقوق غير مالية,ولا يجوز بالتالي التصرف فيها او الحكم عليها",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":23,
+"question":"من خصائص الحقوق السياسية أنها لا تتقرر لجميع الأفراد القاطنين في الدولة",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":24,
+"question":"لها طابع سياسي وتنتمي بالتالي لفرع القانون العام",
+"options": [
+{
+"a": "الحقوق السياسية",
+"b": "الحقوق اللصيقة ياالشخخصية",
+"c": "حقوق الاسرة",
+}
+],
+"answer": "الحقوق السياسية",
+"score": 0,
+"status": ""
+},
+{
+"id":25,
+"question":"من أمثلتها(حق الانتخاب الاعضاء في المجالس النيابية-الحق الترشيح لعضوية هذه المجالس)",
+"options": [
+{
+"a": "الحقوق السياسية",
+"b": "الحقوق اللصيقة ياالشخخصية",
+"c": "حقوق الاسرة",
+}
+],
+"answer": "الحقوق السياسية",
+"score": 0,
+"status": ""
+},
+{
+"id":26,
+"question":"تلك الحقوق التي تتقرر الأنسان بناء علي كونه أنسانا",
+"options": [
+{
+"a": "الحقوق السياسية",
+"b": "الحقوق اللصيقة ياالشخخصية",
+"c": "حقوق الاسرة",
+}
+],
+"answer": "الحقوق اللصيقة ياالشخخصية",
+"score": 0,
+"status": ""
+},
+{
+"id":27,
+"question":"من أنواع الحقوق اللصيقة أنها تتصل بالكيان المادي أو المعنوي للأنسان",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":28,
+"question":"مدي الصحة التصرف الوارد علي الاعضاء المتجددة والغير متجددة للأنسان من أنواع الخقوق السياسية",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "خطأ",
+"score": 0,
+"status": "الحقوق اللصيقة"
+},
+{
+"id":29,
+"question":"الحقوق اللصيقة تتصل بالكيان المعنوي مثل.....",
+"options": [
+{
+"a": "حق الأنسان علي أسمه",
+"b": "حق الأنسان في المحافظة علي سمعته وشرفه",
+"c":"حق الأنسان في نتاجه الذهني",
+"d":"كل ماسبق",
+}
+],
+"answer": "كل ماسبق",
+"score": 0,
+"status": ""
+},
+{
+"id":30,
+"question":"من خصائص الحقوق اللصيقة أنها تتميز يانها غير مالية تتصل أتصالا وثيقا بشخص صاحبها ",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":31,
+"question":"الحقوق السياسية لا تزول عن صاحبها ولا يجوز الأعتداء عليها",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "خطأ",
+"score": 0,
+"status": "الحقوق اللصيقة"
+},
+{
+"id":32,
+"question":"من خصائص الحقوق اللصيقة......",
+"options": [
+{
+"a": "لايجوز التصرف فيها",
+"b": "لاتسقط بعدم الاستعمال",
+"c":"لا تنتقل للتغير بالتقادم المكسب",
+"d":"لاتتنقل بالأرث",
+"e":"غير قابلة للحجر عليها",
+"f":"كل ماسبق",
+}
+],
+"answer": "كل ماسبق",
+"score": 0,
+"status": ""
+},
+{
+"id":33,
+"question":"يجوز الأعتداء علي الحقوق اللصيقة",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "خطأ",
+"score": 0,
+"status": "لا يجوز"
+},
+{
+"id":34,
+"question":"هي الحقوق التي تتقرر للشخص بأعتباره عضوا في أسرة معينة",
+"options": [
+{
+"a": "الحقوق السياسية",
+"b": "الحقوق اللصيقة",
+"c":"حقوق الاسرة",
+}
+],
+"answer": "حقوق الاسرة",
+"score": 0,
+"status": ""
+},
+{
+"id":35,
+"question":"يغلب علي حقوق الأسرة الطابع المالي,وتدخل في نطاق الحقوق المالية",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "خطأ",
+"score": 0,
+"status": "الغير المالي"
+},
+{
+"id":36,
+"question":"تتمز حقوق الاسرة بأن المصلحة لا تقتصر علي صاحبها",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":37,
+"question":"الحق الماليه يكون الحق ماليا حيث يكو محله قابلا للتقويم",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":38,
+"question":"يقصد بالزمة المالية مجموعة ما لدي الشخص من حقوق مالية                              ",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":39,
+"question":"الجانب الأيجابي للذمة المالية يحتوي علي الألتزامات المالية للشخص",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "خطأ",
+"score": 0,
+"status": "الجانب السلبي"
+},
+{
+"id":40                                                      ,
+"question":"الجانب السلبي يشتمل علي حقوق المالية للشخص",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "خطأ",
+"score": 0,
+"status": "الجانب الأيجابي"
+},
+{
+"id":41,
+"question":"هو سلطة مباشرة ترد علي شئ معين,ولا يحتاجه صاحبه الي وساطة شخص أخر",
+"options": [
+{
+"a": "الحق الشخصي",
+"b": "الحق العيني",
+}
+],
+"answer": "الحق العيني",
+"score": 0,
+"status": ""
+},
+{
+"id":42,
+"question":"رابطة بين طرفين بمقتضاها للطرف الأول (الدائن) ان يطالب الطرف التاني(لمدين) بالقيام بعمل معين",
+"options": [
+{
+"a": "الحق الشخصي",
+"b": "الحق العيني",
+}
+],
+"answer":"الحق الشخصي",
+"score": 0,
+"status": ""
+},
+{
+"id":43,                                                      
+"question":"الحق العيني يتميز بأنه سلطة مباشرة علي شيء",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":44,                                                      
+"question":"الحق الشخصي محله عمل المدين",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":45,
+"question":"من صور الحق العيني أنه وردت في القانون علي سبيل الحصر حيث تحدد السلطات المخولة لأصحابها",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":46,
+"question":"من صور الحق الشخصي أن الأتفاق بشأنها لايقع تحت حصر,طالما أنه لايصطدم بالنظام العام",
+"options": [
+{
+"a": "صح",
+"b": "خطأ",
+}
+],
+"answer": "صح",
+"score": 0,
+"status": ""
+},
+{
+"id":47,
+"question":"تكفي أرادة صاحب الحق العيني للنزول عن حقه من شروط النزول عن الحق في الحقوق......",
+"options": [
+{
+"a": "الحقوق العينية",
+"b": "الحقوق الشخصية",
+}
+],
+"answer": "الحقوق العينية",
+"score": 0,
+"status": ""
+},
+{
+"id":48,
+"question":"بعض التقنيات تستلزم أتفاق الدائن والمدين كالقانون المدني من شروط النزول عن الحق في الحقوق......",
+"options": [
+{
+"a": "الحقوق العينية",
+"b": "الحقوق الشخصية",
+}
+],
+"answer": "الحقوق الشخصية",
+"score": 0,
+"status": ""
+},
+{
+"id":49,
+"question":"",
+"options": [
+{
+"a": "",
+"b": "",
+}
+],
+"answer": "",
+"score": 0,
+"status": ""
+},
+{
+"id":49,
+"question":"",
+"options": [
+{
+"a": "",
+"b": "",
+}
+],
+"answer": "",
+"score": 0,
+"status": ""
+},
+{
+"id":49,
+"question":"",
+"options": [
+{
+"a": "",
+"b": "",
+}
+],
+"answer": "",
+"score": 0,
+"status": ""
+},
+{
+"id":49,
+"question":"",
+"options": [
+{
+"a": "",
+"b": "",
+}
+],
+"answer": "",
+"score": 0,
+"status": ""
+},
+{
+"id":49,
+"question":"",
+"options": [
+{
+"a": "",
+"b": "",
+}
+],
+"answer": "",
+"score": 0,
+"status": ""
+},
+{
+"id":49,
+"question":"",
+"options": [
+{
+"a": "",
+"b": "",
+}
+],
+"answer": "",
+"score": 0,
+"status": ""
+},
+{
+"id":49,
+"question":"",
+"options": [
+{
+"a": "",
+"b": "",
+}
+],
+"answer": "",
+"score": 0,
+"status": ""
+},
+{
+"id":49,
+"question":"",
+"options": [
+{
+"a": "",
+"b": "",
+}
+],
+"answer": "",
+"score": 0,
+"status": ""
+},
+]
+}
+var quizApp = function () {
+this.score = 0;
+this.qno = 1;
+this.currentque = 0;
+var totalque = quiz.JS.length;
+this.displayQuiz = function (cque) {
+this.currentque = cque;
+if (this.currentque < totalque) {
+$("#tque").html(totalque);
+$("#previous").attr("disabled", false);
+$("#next").attr("disabled", false);
+$("#qid").html(quiz.JS[this.currentque].id + '.');
+$("#question").html(quiz.JS[this.currentque].question);
+$("#question-options").html("");
+for (var key in quiz.JS[this.currentque].options[0]) {
+if (quiz.JS[this.currentque].options[0].hasOwnProperty(key)) {
+$("#question-options").append(
+"<div class='form-check option-block'>" +
+"<label style='direction:ltr; ' class='form-check-label'>" +
+"<input type='radio' class='form-check-input mt-2 w-5 ' name='option' id='q" + key + "' value='" + quiz.JS[this.currentque].options[0][key] + "'><span id='optionval'>" +
+quiz.JS[this.currentque].options[0][key] +
+"</span></label>"
+);
+
+}
+}
+}
+if (this.currentque <= 0) {
+$("#previous").attr("disabled", true);
+}
+if (this.currentque >= totalque) {
+$('#next').attr('disabled', true);
+for (var i = 0; i < totalque; i++) {
+this.score = this.score + quiz.JS[i].score;
+}
+return this.showResult(this.score);
+}
+}
+this.showResult = function (scr) {
+$("#result").addClass('result');
+$("#result").html("<h1 class='res-header'>Total Score: &nbsp;" + scr + '/' + totalque + "</h1>");
+for (var j = 0; j < totalque; j++) {
+var res;
+if (quiz.JS[j].score == 0) {
+res = '<span class="wrong">' + quiz.JS[j].score + '</span><i class="fa fa-remove c-wrong"></i>';
+
+var sta ;
+sta = '<h2>'+ quiz.JS[j].status +'</h2>';
+} else {
+res = '<span class="correct">' + quiz.JS[j].score + '</span><i class="fa fa-check c-correct"></i>';
+}
+$("#result").append(
+'<div class="result-question"><span>Q ' + quiz.JS[j].id + '</span> &nbsp;' + quiz.JS[j].question + '</div>' +
+'<div><b>Correct answer:</b> &nbsp;' + quiz.JS[j].answer + '</div>' +
+'<div class="last-row"><b>Score:</b> &nbsp;' + res +
+'</div>'
+);
+}
+}
+this.checkAnswer = function (option) {
+var answer = quiz.JS[this.currentque].answer;
+option = option.replace(/</g, "&lt;") //for <
+option = option.replace(/>/g, "&gt;") //for >
+option = option.replace(/"/g, "&quot;")
+if (option == quiz.JS[this.currentque].answer) {
+if (quiz.JS[this.currentque].score == "") {
+quiz.JS[this.currentque].score = 1;
+quiz.JS[this.currentque].status = "correct";
+}
+} else {
+quiz.JS[this.currentque].status = "wrong";
+}
+}
+this.changeQuestion = function (cque) {
+this.currentque = this.currentque + cque;
+this.displayQuiz(this.currentque);
+}
+}
+var jsq = new quizApp();
+var selectedopt;
+$(document).ready(function () {
+jsq.displayQuiz(0);
+$('#question-options').on('change', 'input[type=radio][name=option]', function (e) {
+//var radio = $(this).find('input:radio');
+$(this).prop("checked", true);
+selectedopt = $(this).val();
+});
+});
+$('#next').click(function (e) {
+e.preventDefault();
+if (selectedopt) {
+jsq.checkAnswer(selectedopt);
+}
+jsq.changeQuestion(1);
+});
+$('#previous').click(function (e) {
+e.preventDefault();
+if (selectedopt) {
+jsq.checkAnswer(selectedopt);
+}
+jsq.changeQuestion(-1);
+});
+</script>
+</body>
+</html>
