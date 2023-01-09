@@ -15,11 +15,9 @@
 <style>
 
 
-body{
-    direction: rtl;
-}
     .content {
 margin-top: 54px;
+margin-right:200px;
 }
 .header {
 padding: 15px;
@@ -43,10 +41,13 @@ color: #fff;
 .quiz-body {
 margin-top: 15px;
 padding-bottom: 50px;
+direction: rtl;
 }
 .option-block-container {
 margin-top: 20px;
-max-width: 420px;
+max-width: 900px;
+text-align: center;
+margin-right: -150px;
 }
 .option-block {
 padding: 10px;
@@ -54,6 +55,10 @@ background: aliceblue;
 border: 1px solid #84c5fe;
 margin-bottom: 10px;
 cursor: pointer;
+font-size:20px;
+height: 70px;
+top: 10px;
+border-radius: 20px;
 }
 .result-question {
 font-weight: bold;
@@ -75,6 +80,73 @@ margin-bottom: 25px;
 border-bottom: 1px solid #ccc;
 margin-bottom: 15px;
 padding-bottom: 15px;
+}
+
+.mt-2 {
+    margin-top: 0.6rem!important;
+}
+
+#next{
+width: 435px;
+height: 40px;
+border-radius: 10px;
+margin-right: 13px;
+}
+
+#previous{
+width: 435px;
+height: 40px;
+border-radius: 10px;
+margin-right: -147px;
+}
+
+h4{
+font-size: 2rem;
+margin-left: 30px;
+}
+
+
+
+@media screen and (max-width: 667px) {	
+#next{
+height: 40px;
+border-radius: 10px;
+margin-right: -100px;
+margin-top:0px;
+width:100%;
+}
+
+#previous{
+display: none;
+
+}
+h4{
+width: 340px;
+font-size: 2rem;
+margin-right:-209px;
+}
+
+}
+
+@media screen and (max-width: 1000px) {	
+#next{
+height: 40px;
+border-radius: 10px;
+margin-right: -100px;
+margin-top:0px;
+width:100%;
+}
+
+#previous{
+display: none;
+
+}
+h4{
+width: 340px;
+font-size: 2rem;
+margin-right:-209px;
+}
+
 }
 </style>
 </head>
@@ -319,152 +391,6 @@ var quiz = {
 "score": 0,
 "status": ""
 },
-{
-"id": 15,
-"question": "",
-"options": [
-{
-"a": "",
-"b": "",
-"c": "",
-"d": ""
-}
-],
-"answer": "",
-"score": 0,
-"status": ""
-},
-{
-"id": 10,
-"question": "",
-"options": [
-{
-"a": "",
-"b": "",
-"c": "",
-"d": ""
-}
-],
-"answer": "",
-"score": 0,
-"status": ""
-},
-{
-"id": 10,
-"question": "",
-"options": [
-{
-"a": "",
-"b": "",
-"c": "",
-"d": ""
-}
-],
-"answer": "",
-"score": 0,
-"status": ""
-},
-{
-"id": 10,
-"question": "",
-"options": [
-{
-"a": "",
-"b": "",
-"c": "",
-"d": ""
-}
-],
-"answer": "",
-"score": 0,
-"status": ""
-},
-{
-"id": 10,
-"question": "",
-"options": [
-{
-"a": "",
-"b": "",
-"c": "",
-"d": ""
-}
-],
-"answer": "",
-"score": 0,
-"status": ""
-},
-{
-"id": 10,
-"question": "",
-"options": [
-{
-"a": "",
-"b": "",
-"c": "",
-"d": ""
-}
-],
-"answer": "",
-"score": 0,
-"status": ""
-},
-// {
-// "id": 22,
-// "question": "How do you declare a JavaScript variable?",
-// "options": [
-// {
-// "a": "var carName;",
-// "b": "variable carName;",
-// "c": "v carName;"
-// }
-// ],
-// "answer": "var carName;",
-// "score": 0,
-// "status": ""
-// },
-// {
-// "id": 23,
-// "question": "Which operator is used to assign a value to a variable?",
-// "options": [
-// {
-// "a": "*",
-// "b": "-",
-// "c": "=",
-// "d": "x"
-// }
-// ],
-// "answer": "=",
-// "score": 0,
-// "status": ""
-// },
-// {
-// "id": 24,
-// "question": "What will the following code return: Boolean(10 &gt; 9)",
-// "options": [
-// {
-// "a": "NaN",
-// "b": "false",
-// "c": "true"
-// }
-// ],
-// "answer": "true",
-// "score": 0,
-// "status": ""
-// },
-// {
-// "id": 25,
-// "question": "Is JavaScript case-sensitive?",
-// "options": [
-// {
-// "a": "No",
-// "b": "Yes"
-// }
-// ],
-// "answer": "Yes",
-// "score": 0,
-// "status": ""
-// }
 ]
 }
 
